@@ -151,15 +151,15 @@ psql -U postgres -d pixio_db -f database/seed.sql
 
 ### Оформление заказа
 
-![Оформление заказа](docs/screenshots/06-checkout.png)
+![Оформление заказа](docs/screenshots/06-order-success.png)
 
 ### Успешное оформление заказа
 
-![Успешное оформление заказа](docs/screenshots/07-order-success.png)
+![Успешное оформление заказа](docs/screenshots/07-buyer-profile.png)
 
 ### Профиль покупателя
 
-![Профиль покупателя](docs/screenshots/08-buyer-profile.png)
+![Профиль покупателя](docs/screenshots/08-seller-profile.png)
 
 ### Кабинет продавца
 
