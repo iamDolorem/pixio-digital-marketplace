@@ -129,22 +129,45 @@ psql -U postgres -d pixio_db -f database/seed.sql
 
 ## Скриншоты
 
-Скриншоты интерфейса планируется добавить в папку:
+### Каталог товаров
 
-```text
-docs/screenshots/
-```
+![Каталог товаров](docs/screenshots/01-catalog.png)
 
-Рекомендуемые экраны для демонстрации:
+### Страница товара
 
-* каталог товаров;
-* страница товара;
-* корзина;
-* оформление заказа;
-* профиль покупателя;
-* кабинет продавца;
-* добавление товара;
-* редактирование товара.
+![Страница товара](docs/screenshots/02-product-page.png)
+
+### Авторизация
+
+![Авторизация](docs/screenshots/03-login.png)
+
+### Регистрация
+
+![Регистрация](docs/screenshots/04-register.png)
+
+### Корзина
+
+![Корзина](docs/screenshots/05-cart.png)
+
+### Оформление заказа
+
+![Оформление заказа](docs/screenshots/06-checkout.png)
+
+### Успешное оформление заказа
+
+![Успешное оформление заказа](docs/screenshots/07-order-success.png)
+
+### Профиль покупателя
+
+![Профиль покупателя](docs/screenshots/08-buyer-profile.png)
+
+### Кабинет продавца
+
+![Кабинет продавца](docs/screenshots/09-seller-dashboard.png)
+
+### Добавление или редактирование товара
+
+![Форма товара](docs/screenshots/10-seller-product-form.png)
 
 ## Статус проекта
 
