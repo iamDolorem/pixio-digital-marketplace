@@ -40,7 +40,7 @@
     </div>
 
     <div class="pt-4">
-      <h3 class="mb-2 min-h-[3.5rem] text-[1.05rem] font-medium leading-7 text-slate-900">
+      <h3 class="mb-2 text-[1.05rem] font-medium leading-7 text-slate-900">
         {product.title}
       </h3>
 
