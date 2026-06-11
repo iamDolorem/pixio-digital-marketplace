@@ -1,0 +1,3 @@
+-- Demo data for local development.
+-- Add test categories, products and users here if needed.
+-- Real user data, passwords, tokens and local database dumps should not be stored in this file.
