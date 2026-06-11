@@ -149,23 +149,23 @@ psql -U postgres -d pixio_db -f database/seed.sql
 
 ![Корзина](docs/screenshots/05-cart.png)
 
-### Оформление заказа
+### Успешное оформление заказа
 
 ![Оформление заказа](docs/screenshots/06-order-success.png)
 
-### Успешное оформление заказа
+### Профиль покупателя
 
 ![Успешное оформление заказа](docs/screenshots/07-buyer-profile.png)
 
-### Профиль покупателя
+### Профиль продавца
 
 ![Профиль покупателя](docs/screenshots/08-seller-profile.png)
 
-### Кабинет продавца
+### Панель управления продавца
 
 ![Кабинет продавца](docs/screenshots/09-seller-dashboard.png)
 
-### Добавление или редактирование товара
+### Редактирование товара
 
 ![Форма товара](docs/screenshots/10-seller-product-form.png)
 
