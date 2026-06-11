@@ -1,43 +1,33 @@
-# Astro Starter Kit: Minimal
+# Frontend
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Frontend-часть дипломного проекта Pixio — marketplace для продажи цифровых продуктов.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Интерфейс реализован на Astro, Svelte и Tailwind CSS. Frontend отвечает за отображение каталога товаров, страниц авторизации, корзины, оформления заказа, личного кабинета покупателя и кабинета продавца.
 
-## 🚀 Project Structure
+## Стек
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro
+- Svelte
+- Tailwind CSS
+- JavaScript / TypeScript
+- HTML / CSS
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## Основные страницы
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+- `/` — каталог товаров;
+- `/login` — авторизация;
+- `/register` — регистрация;
+- `/profile` — профиль пользователя;
+- `/cart` — корзина;
+- `/checkout` — оформление заказа;
+- `/order-success` — успешное оформление заказа;
+- `/seller/dashboard` — кабинет продавца;
+- `/seller/products/new` — добавление товара;
+- `/seller/products/edit` — редактирование товара;
+- `/product/view` — страница товара.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Запуск frontend
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+```bash
+npm install
+npm run dev
