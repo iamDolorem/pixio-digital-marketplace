@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartView from '../components/CartView.svelte';
+---
+
+<Layout title="Корзина">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-[70rem] px-5 py-8">
+      <CartView client:load />
+    </section>
+  </main>
+</Layout>

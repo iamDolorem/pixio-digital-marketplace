@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LoginView from '../components/LoginView.svelte';
+---
+
+<Layout title="Вход">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-xl px-5 py-10">
+      <LoginView client:load />
+    </section>
+  </main>
+</Layout>

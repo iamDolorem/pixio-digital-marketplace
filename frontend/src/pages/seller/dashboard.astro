@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SellerDashboard from '../../components/SellerDashboard.svelte';
+---
+
+<Layout title="Мои товары">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-6xl px-5 py-8">
+      <h1 class="mb-5 text-2xl font-semibold">Мои товары</h1>
+
+      <div class="mb-5">
+        <a
+          href="/seller/products/new"
+          class="inline-flex items-center gap-3 rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-5 py-2.5 text-[15px] font-normal text-slate-900 transition hover:border-slate-500 hover:bg-[rgba(255,255,255,0.82)]"
+        >
+          <svg
+            class="h-3.5 w-3.5 text-slate-700"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" />
+          </svg>
+          <span>Добавить товар</span>
+        </a>
+      </div>
+
+      <SellerDashboard client:load />
+    </section>
+  </main>
+</Layout>

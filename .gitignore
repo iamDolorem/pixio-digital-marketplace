@@ -1,0 +1,49 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+logs/
+
+# Node / frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.astro/
+node_modules/
+dist/
+.astro/
+
+# C++ / CMake backend
+backend/build/
+backend/cmake-build-*/
+backend/CMakeFiles/
+backend/CMakeCache.txt
+backend/Makefile
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Database dumps
+*.dump
+*.sql.backup
+backup/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/

@@ -1,0 +1,434 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout title="Добавление товара">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-6xl px-5 py-8">
+      <div class="mb-6">
+        <h1 class="mb-2 text-3xl font-semibold text-slate-900">Добавление товара</h1>
+      </div>
+
+      <div class="grid items-start gap-5 lg:grid-cols-[1fr_1fr]">
+        <div class="rounded-[24px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] p-4 backdrop-blur-sm">
+          <div
+            id="image-preview"
+            class="flex h-[360px] items-center justify-center overflow-hidden rounded-[18px] text-sm text-slate-700"
+          >
+            Предпросмотр изображения
+          </div>
+
+          <div
+            id="image-thumbnails"
+            class="mt-4 grid grid-cols-7 gap-2"
+          ></div>
+        </div>
+
+        <div class="rounded-[24px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-6 py-6 backdrop-blur-sm">
+          <form id="new-product-form" class="space-y-5">
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Название товара
+              </label>
+              <textarea
+                id="title-field"
+                rows="1"
+                placeholder="Введите название"
+                class="w-full resize-none overflow-hidden rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+                oninput="this.style.height='auto'; this.style.height=this.scrollHeight + 'px';"
+              ></textarea>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Категория
+              </label>
+
+              <div class="relative">
+                <button
+                  id="category-toggle"
+                  type="button"
+                  class="flex w-full items-center justify-between rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 transition hover:border-slate-500"
+                >
+                  <span id="category-label" class="text-slate-500">Выберите категорию</span>
+                  <span class="text-xs text-slate-500">▼</span>
+                </button>
+
+                <div
+                  id="category-menu"
+                  class="absolute left-0 top-full z-20 mt-2 hidden w-full overflow-hidden rounded-[16px] border border-slate-300/80 bg-white shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+                >
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Игры</button>
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Артбуки</button>
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Музыка</button>
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Графика</button>
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Шаблоны</button>
+                  <button type="button" class="category-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">Интерфейсы</button>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Цена
+              </label>
+              <input
+                id="price-field"
+                type="number"
+                placeholder="Введите цену"
+                class="w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+              />
+            </div>
+
+            <div>
+            <div class="mb-2 flex items-center justify-between gap-3">
+              <div>
+                <p class="text-sm font-medium text-slate-700">Изображения товара</p>
+                <p class="mt-1 text-xs text-slate-500">
+                  Фото 1 — основная обложка, фото 2 — изображение при наведении, остальные фото отображаются на странице товара.
+                </p>
+              </div>
+
+              <button
+                id="add-image-button"
+                type="button"
+                class="shrink-0 rounded-[14px] bg-[rgba(45,65,87,0.08)] px-4 py-2 text-xs text-slate-900 transition hover:bg-[rgba(45,65,87,0.14)]"
+              >
+                Добавить фото
+              </button>
+            </div>
+
+            <div id="image-fields" class="space-y-3">
+              <div class="image-row flex gap-2">
+                <input
+                  type="text"
+                  placeholder="Ссылка на фото 1"
+                  class="image-url-field w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+                />
+
+                <button
+                  type="button"
+                  class="remove-image-button rounded-[16px] bg-[rgba(45,65,87,0.08)] px-4 py-3 text-sm text-slate-900 transition hover:bg-[rgba(45,65,87,0.14)]"
+                >
+                  ×
+                </button>
+              </div>
+            </div>
+          </div>
+
+            <div>
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Описание
+              </label>
+              <textarea
+                id="description"
+                rows="1"
+                placeholder="Введите описание товара"
+                class="w-full resize-none overflow-hidden rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+                oninput="this.style.height='auto'; this.style.height=this.scrollHeight + 'px';"
+              ></textarea>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-1">
+              <button
+                id="create-product-button"
+                type="submit"
+                class="rounded-[16px] bg-[#2d4157] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#24364a]"
+              >
+                Создать товар
+              </button>
+
+              <a
+                href="/seller/dashboard"
+                class="rounded-[16px] bg-[rgba(45,65,87,0.08)] px-5 py-3 text-sm text-slate-900 transition hover:bg-[rgba(45,65,87,0.14)]"
+              >
+                Отмена
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import { productsStore } from '../../../stores/products';
+    import { userStore } from '../../../stores/user';
+
+    userStore.load();
+
+    const currentUser = userStore.getCurrentUser();
+
+    let canUsePage = true;
+
+    if (!currentUser) {
+      canUsePage = false;
+      window.location.href = '/login?redirect=/seller/products/new';
+    }
+
+    if (currentUser && currentUser.role !== 'seller') {
+      canUsePage = false;
+      window.location.href = '/';
+    }
+
+    const titleField = document.getElementById('title-field');
+    if (titleField) {
+      titleField.style.height = 'auto';
+      titleField.style.height = titleField.scrollHeight + 'px';
+    }
+
+    const descriptionField = document.getElementById('description');
+    if (descriptionField) {
+      descriptionField.style.height = 'auto';
+      descriptionField.style.height = descriptionField.scrollHeight + 'px';
+    }
+
+    const categoryToggle = document.getElementById('category-toggle');
+    const categoryMenu = document.getElementById('category-menu');
+    const categoryLabel = document.getElementById('category-label');
+    const categoryOptions = document.querySelectorAll('.category-option');
+
+    let selectedCategory = '';
+
+    categoryToggle?.addEventListener('click', () => {
+      categoryMenu?.classList.toggle('hidden');
+    });
+
+    categoryOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        selectedCategory = option.textContent?.trim() || '';
+        if (categoryLabel) {
+          categoryLabel.textContent = selectedCategory || 'Выберите категорию';
+          categoryLabel.classList.remove('text-slate-500');
+          categoryLabel.classList.add('text-slate-900');
+        }
+        categoryMenu?.classList.add('hidden');
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (
+        categoryMenu &&
+        categoryToggle &&
+        target instanceof Node &&
+        !categoryMenu.contains(target) &&
+        !categoryToggle.contains(target)
+      ) {
+        categoryMenu.classList.add('hidden');
+      }
+    });
+
+    const imagePreview = document.getElementById('image-preview');
+    const imageFields = document.getElementById('image-fields');
+    const addImageButton = document.getElementById('add-image-button');
+    const imageThumbnails = document.getElementById('image-thumbnails');
+    let activePreviewIndex = 0;
+
+    const getImageInputs = () => {
+      return Array.from(document.querySelectorAll('.image-url-field')).filter(
+        (input) => input instanceof HTMLInputElement
+      );
+    };
+
+    const getImages = () => {
+      return getImageInputs()
+        .map((input) => input.value.trim())
+        .filter(Boolean);
+    };
+
+    const renderPreview = () => {
+      if (!imagePreview || !imageThumbnails) return;
+
+      const images = getImages();
+
+      if (activePreviewIndex >= images.length) {
+        activePreviewIndex = 0;
+      }
+
+      const activeImage = images[activePreviewIndex] || '';
+
+      if (!activeImage) {
+        imagePreview.innerHTML = 'Предпросмотр изображения';
+        imagePreview.className =
+          'flex h-[360px] items-center justify-center overflow-hidden rounded-[18px] text-sm text-slate-500';
+
+        imageThumbnails.innerHTML = '';
+        return;
+      }
+
+      imagePreview.className = 'h-[360px] overflow-hidden rounded-[18px]';
+      imagePreview.innerHTML = `
+        <img
+          src="${activeImage}"
+          alt="Предпросмотр"
+          class="h-full w-full object-cover"
+        />
+      `;
+
+      imageThumbnails.innerHTML = images
+        .map((url, index) => {
+          const activeClass =
+            index === activePreviewIndex
+              ? 'border-slate-500'
+              : 'border-slate-300/80 hover:border-slate-400';
+
+          return `
+            <button
+              type="button"
+              data-preview-index="${index}"
+              class="preview-thumbnail aspect-square w-full overflow-hidden rounded-[12px] border ${activeClass} transition focus:outline-none"
+              title="Фото ${index + 1}"
+            >
+              <img
+                src="${url}"
+                alt="Фото ${index + 1}"
+                class="h-full w-full object-cover"
+              />
+            </button>
+          `;
+        })
+        .join('');
+    };
+
+    const updateImagePlaceholders = () => {
+      getImageInputs().forEach((input, index) => {
+        input.placeholder = `Ссылка на фото ${index + 1}`;
+      });
+    };
+
+    const addImageField = () => {
+      if (!imageFields) return;
+
+      imageFields.insertAdjacentHTML(
+        'beforeend',
+        `
+          <div class="image-row flex gap-2">
+            <input
+              type="text"
+              placeholder="Ссылка на фото"
+              class="image-url-field w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.72)] px-4 py-3 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+            />
+
+            <button
+              type="button"
+              class="remove-image-button rounded-[16px] bg-[rgba(45,65,87,0.08)] px-4 py-3 text-sm text-slate-900 transition hover:bg-[rgba(45,65,87,0.14)]"
+            >
+              ×
+            </button>
+          </div>
+        `
+      );
+
+      updateImagePlaceholders();
+      activePreviewIndex = getImageInputs().length - 1;
+      renderPreview();
+    };
+
+    addImageButton?.addEventListener('click', addImageField);
+
+    imageFields?.addEventListener('input', () => {
+      renderPreview();
+    });
+
+    imageThumbnails?.addEventListener('click', (event) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLElement)) return;
+
+      const button = target.closest('.preview-thumbnail');
+
+      if (!(button instanceof HTMLElement)) return;
+
+      const index = Number(button.dataset.previewIndex);
+
+      if (Number.isNaN(index)) return;
+
+      activePreviewIndex = index;
+      renderPreview();
+    });
+
+    imageFields?.addEventListener('click', (event) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLElement)) return;
+
+      if (!target.classList.contains('remove-image-button')) return;
+
+      const row = target.closest('.image-row');
+      const rows = imageFields.querySelectorAll('.image-row');
+
+      if (rows.length === 1) {
+        const input = row?.querySelector('.image-url-field');
+
+        if (input instanceof HTMLInputElement) {
+          input.value = '';
+        }
+
+        renderPreview();
+        return;
+      }
+
+      row?.remove();
+      updateImagePlaceholders();
+
+      const images = getImages();
+      if (activePreviewIndex >= images.length) {
+        activePreviewIndex = Math.max(0, images.length - 1);
+      }
+
+      renderPreview();
+    });
+
+    const form = document.getElementById('new-product-form');
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      if (!canUsePage || !currentUser) return;
+
+      const title =
+        titleField instanceof HTMLTextAreaElement ? titleField.value.trim() : '';
+
+      const priceField = document.getElementById('price-field');
+      const priceRaw =
+        priceField instanceof HTMLInputElement ? priceField.value.trim() : '';
+
+      const images = getImages();
+
+      const description =
+        descriptionField instanceof HTMLTextAreaElement ? descriptionField.value.trim() : '';
+
+      const price = Number(priceRaw);
+
+      if (
+        !title ||
+        !selectedCategory ||
+        !priceRaw ||
+        Number.isNaN(price) ||
+        price < 0 ||
+        images.length === 0 ||
+        !description
+      ) {
+        alert('Заполните все поля корректно. Минимум одно изображение обязательно.');
+        return;
+      }
+
+      const createdProduct = await productsStore.addProduct({
+        sellerId: currentUser.id,
+        title,
+        category: selectedCategory,
+        description,
+        price,
+        images
+      });
+
+      if (!createdProduct) {
+        alert('Не удалось создать товар');
+        return;
+      }
+
+      window.location.href = '/seller/dashboard';
+    });
+  </script>
+</Layout>

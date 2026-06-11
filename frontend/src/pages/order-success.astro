@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Заказ оформлен">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-3xl px-5 py-12 text-center">
+      <div class="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-[22px] border border-emerald-300 bg-emerald-200 text-emerald-800 shadow-[0_12px_28px_rgba(16,185,129,0.25)]">
+        <svg
+            class="h-9 w-9"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2.7"
+        >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+
+      <h1 class="mb-3 text-3xl font-semibold">
+        Заказ успешно оформлен
+      </h1>
+
+      <p class="mb-2 text-sm text-slate-600">
+        Все товары доступны в вашем профиле.  
+        Лицензионные ключи можно получить в разделе заказов
+      </p>
+
+      <p class="mb-8 text-sm text-slate-600">
+        Письмо с подтверждением заказа и лицензионными ключами отправлено на email
+      </p>
+
+      <div class="flex justify-center gap-4">
+        <a
+          href="/profile"
+          class="rounded-[16px] bg-[#2d4157] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#24364a]"
+        >
+          Перейти в профиль
+        </a>
+
+        <a
+          href="/"
+          class="rounded-[16px] bg-[rgba(45,65,87,0.08)] px-6 py-3 text-sm text-slate-900 transition hover:bg-[rgba(45,65,87,0.14)]"
+        >
+          В каталог
+        </a>
+      </div>
+
+    </section>
+  </main>
+</Layout>

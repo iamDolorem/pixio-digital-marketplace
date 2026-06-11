@@ -1,0 +1,362 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CatalogGrid from '../components/CatalogGrid.svelte';
+
+const categories = [
+  'Игры',
+  'Артбуки',
+  'Музыка',
+  'Графика',
+  'Шаблоны',
+  'Интерфейсы'
+];
+---
+
+<Layout title="Каталог">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-6xl px-5 py-8">
+      <h1 class="mb-5 text-2xl font-semibold">Каталог</h1>
+
+      <div class="mb-4">
+        <div class="relative">
+          <input
+            id="catalog-search"
+            type="text"
+            placeholder="Поиск товара"
+            class="w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] py-2.5 pl-11 pr-4 text-[14px] text-slate-900 outline-none focus:border-slate-500"
+          />
+          <svg
+            class="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-4.35-4.35m1.85-5.15a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <button
+          id="filters-toggle"
+          class="inline-flex items-center gap-3 rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-5 py-2.5 text-[14px] font-normal text-slate-900 transition hover:border-slate-500 hover:bg-[rgba(255,255,255,0.82)]"
+        >
+          <svg
+            class="h-3.5 w-3.5 text-slate-700"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+          <span>Показать фильтры</span>
+        </button>
+      </div>
+
+      <div id="catalog-layout" class="grid gap-0 transition-all duration-300 lg:grid-cols-[0px_minmax(0,1fr)]">
+        <aside
+          id="filters-panel"
+          class="overflow-hidden opacity-0 transition-all duration-300 lg:w-0 lg:p-0"
+        >
+          <div id="filters-inner" class="hidden pb-5 lg:pr-5">
+            <h2 class="mb-6 text-2xl font-semibold">Фильтры</h2>
+
+            <div class="border-slate-300 lg:border-r lg:pr-5">
+              <details class="mb-5 overflow-hidden rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] backdrop-blur-sm">
+                <summary class="cursor-pointer list-none px-5 py-2.5">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[15px] font-normal text-slate-900">Популярные категории</span>
+                    <span class="text-xs text-slate-500">▼</span>
+                  </div>
+                </summary>
+
+                <div class="border-t border-slate-200 px-4 py-4">
+                  <div class="flex flex-wrap gap-3">
+                    {categories.map((item) => (
+                      <button
+                        type="button"
+                        data-category={item}
+                        class="category-filter rounded-full border border-slate-300/80 bg-[rgba(255,255,255,1)] px-4 py-2 text-sm text-slate-800 transition hover:border-slate-500 hover:bg-[rgba(255,255,255,0.82)]"
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </details>
+
+              <div class="mb-5">
+                <label class="mb-2 block text-sm font-medium text-slate-700">Цена, ₽</label>
+
+                <div class="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+                  <input
+                    id="price-min"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="От"
+                    class="w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-4 py-2 text-[14px] outline-none focus:border-slate-500"
+                  />
+
+                  <span class="text-slate-500">—</span>
+
+                  <input
+                    id="price-max"
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="До"
+                    class="w-full rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-4 py-2 text-[14px] outline-none focus:border-slate-500"
+                  />
+                </div>
+              </div>
+
+              <div class="mb-6">
+                <label class="mb-2 block text-sm font-medium text-slate-700">Сортировка</label>
+
+                <div class="relative">
+                  <button
+                    id="sort-toggle"
+                    type="button"
+                    class="flex w-full items-center justify-between rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,0.55)] px-4 py-2 text-[14px] text-slate-900 transition hover:border-slate-500"
+                  >
+                    <span id="sort-label">Сортировка</span>
+                    <span class="text-xs text-slate-500">▼</span>
+                  </button>
+
+                  <div
+                    id="sort-menu"
+                    class="absolute left-0 top-full z-20 mt-2 hidden w-full overflow-hidden rounded-[16px] border border-slate-300/80 bg-[rgba(255,255,255,1)] shadow-[0_8px_24px_rgba(0,0,0,0.08)]"
+                  >
+                    <button type="button" class="sort-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">
+                      Сначала дешевле
+                    </button>
+                    <button type="button" class="sort-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">
+                      Сначала дороже
+                    </button>
+                    <button type="button" class="sort-option block w-full px-4 py-2 text-left text-[14px] text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]">
+                      По названию
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="space-y-3">
+                <button
+                  id="apply-filters"
+                  type="button"
+                  class="w-full rounded-[16px] bg-[#2d4157] px-5 py-3 text-sm font-medium text-white hover:bg-[#24364a]"
+                >
+                  Применить
+                </button>
+
+                <button
+                  id="reset-filters"
+                  type="button"
+                  class="w-full rounded-[16px] bg-transparent px-5 py-3 text-sm text-slate-900 transition hover:bg-[rgba(45,65,87,0.08)]"
+                >
+                  Сбросить
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <CatalogGrid client:load />
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const button = document.getElementById('filters-toggle');
+    const panel = document.getElementById('filters-panel');
+    const inner = document.getElementById('filters-inner');
+    const layout = document.getElementById('catalog-layout');
+
+    let opened = false;
+
+    const setButtonLabel = () => {
+      if (!button) return;
+      const label = button.querySelector('span');
+      if (!label) return;
+      label.textContent = opened ? 'Скрыть фильтры' : 'Показать фильтры';
+    };
+
+    setButtonLabel();
+
+    if (layout) {
+      layout.style.gap = '0';
+    }
+
+    button?.addEventListener('click', () => {
+      opened = !opened;
+
+      if (!panel || !inner || !button || !layout) return;
+
+      if (opened) {
+        layout.classList.remove('lg:grid-cols-[0px_minmax(0,1fr)]');
+        layout.classList.add('lg:grid-cols-[300px_minmax(0,1fr)]');
+        layout.style.gap = '1.25rem';
+
+        panel.classList.remove('lg:w-0', 'opacity-0');
+        panel.classList.add('lg:w-[300px]', 'opacity-100');
+
+        inner.classList.remove('hidden');
+      } else {
+        layout.classList.remove('lg:grid-cols-[300px_minmax(0,1fr)]');
+        layout.classList.add('lg:grid-cols-[0px_minmax(0,1fr)]');
+        layout.style.gap = '0';
+
+        panel.classList.remove('lg:w-[300px]', 'opacity-100');
+        panel.classList.add('lg:w-0', 'opacity-0');
+
+        inner.classList.add('hidden');
+      }
+
+      setButtonLabel();
+    });
+
+    const sortToggle = document.getElementById('sort-toggle');
+    const sortMenu = document.getElementById('sort-menu');
+    const sortLabel = document.getElementById('sort-label');
+    const sortOptions = document.querySelectorAll('.sort-option');
+
+    sortToggle?.addEventListener('click', () => {
+      sortMenu?.classList.toggle('hidden');
+    });
+
+    sortOptions.forEach((option) => {
+      option.addEventListener('click', () => {
+        selectedSort = option.textContent?.trim() || '';
+
+        if (sortLabel) {
+          sortLabel.textContent = selectedSort || 'Сортировка';
+        }
+
+        sortMenu?.classList.add('hidden');
+        dispatchFilters();
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (
+        sortMenu &&
+        sortToggle &&
+        target instanceof Node &&
+        !sortMenu.contains(target) &&
+        !sortToggle.contains(target)
+      ) {
+        sortMenu.classList.add('hidden');
+      }
+    });
+    const searchInput = document.getElementById('catalog-search');
+    const priceMinInput = document.getElementById('price-min');
+    const priceMaxInput = document.getElementById('price-max');
+    const applyFiltersButton = document.getElementById('apply-filters');
+    const resetFiltersButton = document.getElementById('reset-filters');
+    const categoryButtons = document.querySelectorAll('.category-filter');
+
+    let selectedCategory = '';
+    let selectedSort = '';
+
+    const normalizePriceInputs = () => {
+      if (!(priceMinInput instanceof HTMLInputElement)) return;
+      if (!(priceMaxInput instanceof HTMLInputElement)) return;
+
+      if (priceMinInput.value && Number(priceMinInput.value) < 0) {
+        priceMinInput.value = '0';
+      }
+
+      if (priceMaxInput.value && Number(priceMaxInput.value) < 0) {
+        priceMaxInput.value = '0';
+      }
+
+      const min = priceMinInput.value ? Number(priceMinInput.value) : null;
+      const max = priceMaxInput.value ? Number(priceMaxInput.value) : null;
+
+      priceMinInput.setCustomValidity('');
+      priceMaxInput.setCustomValidity('');
+
+      if (min !== null && max !== null && min > max) {
+        priceMaxInput.setCustomValidity('Цена "До" должна быть больше или равна цене "От"');
+        priceMaxInput.reportValidity();
+        return false;
+      }
+
+      return true;
+    };
+
+    const dispatchFilters = () => {
+      const isValid = normalizePriceInputs();
+      if (!isValid) return;
+
+      window.dispatchEvent(
+        new CustomEvent('catalog-filters-change', {
+          detail: {
+            search: searchInput instanceof HTMLInputElement ? searchInput.value : '',
+            minPrice: priceMinInput instanceof HTMLInputElement ? priceMinInput.value : '',
+            maxPrice: priceMaxInput instanceof HTMLInputElement ? priceMaxInput.value : '',
+            category: selectedCategory,
+            sort: selectedSort
+          }
+        })
+      );
+    };
+
+    priceMinInput?.addEventListener('input', () => {
+      if (priceMinInput instanceof HTMLInputElement && Number(priceMinInput.value) < 0) {
+        priceMinInput.value = '0';
+      }
+    });
+
+    priceMaxInput?.addEventListener('input', () => {
+      if (priceMaxInput instanceof HTMLInputElement && Number(priceMaxInput.value) < 0) {
+        priceMaxInput.value = '0';
+      }
+    });
+
+    searchInput?.addEventListener('input', dispatchFilters);
+
+    applyFiltersButton?.addEventListener('click', dispatchFilters);
+
+    categoryButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        selectedCategory = button instanceof HTMLElement ? button.dataset.category || '' : '';
+
+        categoryButtons.forEach((item) => {
+          item.classList.remove('border-slate-600', 'bg-[rgba(45,65,87,0.08)]');
+        });
+
+        button.classList.add('border-slate-600', 'bg-[rgba(45,65,87,0.08)]');
+
+        dispatchFilters();
+      });
+    });
+
+    resetFiltersButton?.addEventListener('click', () => {
+      selectedCategory = '';
+      selectedSort = '';
+
+      if (searchInput instanceof HTMLInputElement) searchInput.value = '';
+      if (priceMinInput instanceof HTMLInputElement) priceMinInput.value = '';
+      if (priceMaxInput instanceof HTMLInputElement) priceMaxInput.value = '';
+      if (sortLabel) sortLabel.textContent = 'Сортировка';
+
+      categoryButtons.forEach((item) => {
+        item.classList.remove('border-slate-600', 'bg-[rgba(45,65,87,0.08)]');
+      });
+
+      dispatchFilters();
+    });
+
+  </script>
+</Layout>

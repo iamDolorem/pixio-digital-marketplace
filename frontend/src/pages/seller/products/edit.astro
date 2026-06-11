@@ -1,0 +1,16 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import EditProductForm from '../../../components/EditProductForm.svelte';
+---
+
+<Layout title="Редактирование товара">
+  <main class="min-h-screen bg-[#e6edf4] text-slate-900">
+    <section class="mx-auto max-w-6xl px-5 py-8">
+      <div class="mb-6">
+        <h1 class="mb-2 text-3xl font-semibold text-slate-900">Редактирование товара</h1>
+      </div>
+
+      <EditProductForm client:load />
+    </section>
+  </main>
+</Layout>
