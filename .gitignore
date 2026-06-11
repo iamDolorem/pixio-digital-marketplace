@@ -47,3 +47,12 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+
+# Backend local files
+backend/build/
+backend/.vscode/
+backend/config.json
+backend/config.yaml
+
+# Backend database dumps
+backend/database/*.sql
